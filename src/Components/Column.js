@@ -15,7 +15,7 @@ function Column({column , tasks, id,}) {
       
       if (event.key === 'Enter') {
         setloading(true)
-        axios.post(`http://localhost:5000/task/createTask`, 
+        axios.post(`https://todo-taccos.herokuapp.com/task/createTask`, 
         {
           content:task,
           columnId:id
@@ -33,7 +33,7 @@ function Column({column , tasks, id,}) {
    const handleTitleChange = (event) => {
 
       if (event.key === 'Enter') {
-        axios.post(`http://localhost:5000/column/setTitle`, 
+        axios.post(`https://todo-taccos.herokuapp.com/column/setTitle`, 
         {
           title:header,
           id:id

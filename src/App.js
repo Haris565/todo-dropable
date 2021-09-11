@@ -30,7 +30,7 @@ function App() {
  
   useEffect(() => {
     setloading(true)
-    axios.get("http://localhost:5000/column/getColumn").then(
+    axios.get("https://todo-taccos.herokuapp.com/column/getColumn").then(
       (res)=>{
         setdata(res.data.columns)
         settasks(res.data.tasks)
@@ -70,7 +70,7 @@ function App() {
 
   const addColumn = () => {
     setcolLoading(true)
-    axios.post(`http://localhost:5000/column/createColumn`, 
+    axios.post(`https://todo-taccos.herokuapp.com/column/createColumn`, 
     {
       title:column
     }
