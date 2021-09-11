@@ -8,6 +8,7 @@ import { Spin } from 'antd';
 function Column({column , tasks, id,}) {
     const [task, settask] = useState('')
     const [loading, setloading] = useState(false)
+    const [header, setHeader] = useState(column.title)
 
 
     const handleKeyDown = (event) => {
@@ -28,9 +29,28 @@ function Column({column , tasks, id,}) {
         })
       }
     }
+
+   const handleTitleChange = (event) => {
+
+      if (event.key === 'Enter') {
+        axios.post(`http://localhost:5000/column/setTitle`, 
+        {
+          title:header,
+          id:id
+        }
+        )
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+          setHeader(res.data)
+        })
+      }
+    }
     return (
         <div className="flex flex-col h-full">
-            <h2 className='ml-2'>{column.title}</h2>
+          <input type="text" name="" id="" className='ml-2 outline-none p-2' value={header}  onChange={(e)=>setHeader(e.target.value)} 
+          onKeyDown={(event)=>handleTitleChange(event)} />
+            
             <Droppable droppableId={column._id}>
             {(provided, snapshot) => (
             <div
